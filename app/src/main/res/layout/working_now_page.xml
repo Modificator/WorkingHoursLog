@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="cn.modificator.workinghourslog.data.bean.WorkingHourLog" />
+
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="cn.modificator.workinghourslog.MainActivity"
+        tools:showIn="@layout/app_bar_main">
+
+        <TextView
+            android:id="@+id/tvProjectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工时统计App"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+        <!--android:text='@{data.pjtName}'-->
+
+        <TextView
+            android:id="@+id/tvStartTimeTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvProjectName"
+            android:layout_marginTop="10dp"
+            android:text="开始时间:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvStartTimeTag"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tvStartTimeTag"
+            android:text="2016-09-06 21:21:49" />
+
+        <TextView
+            android:id="@+id/tvDescTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvStartTimeTag"
+            android:layout_marginTop="10dp"
+            android:text="描述:" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDescTag"
+            android:layout_marginTop="5dp"
+            android:minLines="3"
+            android:textColor="@color/black"
+            tools:text="这是描述这是描述这是描述这是描述\n这是描述这是描述" />
+
+        <Button
+            android:id="@+id/btnEditDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDesc"
+            android:layout_marginTop="10dp"
+            android:text="修改描述" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/btnEditDesc"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/btnEditDesc"
+            android:text="任务完成!"
+            android:textColor="#059e45" />
+    </RelativeLayout>
+
+</layout>

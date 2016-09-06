@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/working_add_working_log"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="cn.modificator.workinghourslog.working.AddWorkingLog">
+
+        <include layout="@layout/toolbar" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/pjtNameInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true">
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/etProjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="项目名称" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/groupInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/etWorkingGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="工作组" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/descInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etWorkingDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="工作描述"
+                android:minLines="6" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:src="@drawable/ic_done"
+        app:useCompatPadding="true" />
+</FrameLayout>

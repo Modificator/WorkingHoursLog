@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_nowWork"
+            android:title="@string/menu_nowWork" />
+        <item
+            android:id="@+id/menu_worklist"
+            android:title="@string/menu_worklist" />ß
+        <item
+            android:id="@+id/menu_history"
+            android:title="@string/menu_history" />
+    </group>
+
+    <item android:title="操作">
+        <menu>
+            <item
+                android:id="@+id/menu_export"
+                android:title="@string/export" />
+        </menu>
+    </item>
+
+</menu>
