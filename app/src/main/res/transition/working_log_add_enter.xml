@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="400"
+    android:transitionOrdering="together">
+
+    <slide
+        android:duration="300"
+        android:slideEdge="top">
+        <targets>
+            <target android:excludeId="@android:id/navigationBarBackground" />
+            <target android:excludeId="@android:id/statusBarBackground" />
+            <target android:excludeId="@id/btnAdd" />
+            <target android:excludeId="@id/working_add_working_log" />
+        </targets>
+    </slide>
+    <slide
+        android:slideEdge="bottom"
+        android:startDelay="200">
+        <targets>
+            <target android:targetId="@id/btnAdd" />
+        </targets>
+    </slide>
+
+</transitionSet>

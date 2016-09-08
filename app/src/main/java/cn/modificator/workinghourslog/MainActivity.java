@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity
         ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
         btnAddLog.setOnClickListener(v -> {
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
-                    .makeClipRevealAnimation(v, v.getTop(), v.getLeft(), v.getMeasuredWidth(), v.getMeasuredHeight());
+                    .makeSceneTransitionAnimation(mContext, btnAddLog, "addLog");
             Intent intent = new Intent(mContext, AddWorkingLog.class);
             ActivityCompat.startActivity(mContext, intent, optionsCompat.toBundle());
-
+//            startActivity(intent);
         });
     }
 
