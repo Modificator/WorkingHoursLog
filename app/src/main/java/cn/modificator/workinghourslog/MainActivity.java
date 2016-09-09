@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.transition.Explode;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -61,8 +62,9 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
         btnAddLog.setOnClickListener(v -> {
+            getWindow().setExitTransition(new Explode());
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
-                    .makeClipRevealAnimation(v, v.getTop(), v.getLeft(), v.getMeasuredWidth(), v.getMeasuredHeight());
+                    .makeClipRevealAnimation(btnAddLog,btnAddLog.getWidth()/2, btnAddLog.getHeight()/2, btnAddLog.getWidth(), btnAddLog.getHeight());
             Intent intent = new Intent(mContext, AddWorkingLog.class);
             ActivityCompat.startActivity(mContext, intent, optionsCompat.toBundle());
 
