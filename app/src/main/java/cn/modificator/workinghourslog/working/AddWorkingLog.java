@@ -92,6 +92,32 @@ public class AddWorkingLog extends AppCompatActivity {
         transitionSet.addTransition(changeColor);
 
         transitionSet.setDuration(450);
+//https://github.com/crianzy/CustomAndroidActivityTransition/blob/master/app/src/main/java/com/imczy/customactivitytransition/CommentActivity.java
+        return transitionSet;
+    }
+
+    /**
+     * 分享元素返回动画
+     *
+     * @return
+     */
+    private TransitionSet buildShareElemReturnSet() {
+        TransitionSet transitionSet = new TransitionSet();
+
+        Transition changePos = new ShareElemReturnChangePosition();
+        changePos.addTarget(R.id.comment_box);
+        transitionSet.addTransition(changePos);
+
+        ChangeColor changeColor = new ChangeColor(getResources().getColor(R.color.white), getResources().getColor(R.color.black_85_alpha));
+        changeColor.addTarget(R.id.comment_box);
+        transitionSet.addTransition(changeColor);
+
+
+        Transition revealTransition = new ShareElemReturnRevealTransition(mCommentBox);
+        revealTransition.addTarget(R.id.comment_box);
+        transitionSet.addTransition(revealTransition);
+
+        transitionSet.setDuration(900);
 
         return transitionSet;
     }
