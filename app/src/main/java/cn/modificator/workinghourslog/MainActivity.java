@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
         btnAddLog.setOnClickListener(v -> {
-            getWindow().setExitTransition(new Explode());
+//            getWindow().setExitTransition(new Explode());
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
-                    .makeClipRevealAnimation(btnAddLog,btnAddLog.getWidth()/2, btnAddLog.getHeight()/2, btnAddLog.getWidth(), btnAddLog.getHeight());
+                    .makeSceneTransitionAnimation(mContext, btnAddLog, "addLog");
             Intent intent = new Intent(mContext, AddWorkingLog.class);
             ActivityCompat.startActivity(mContext, intent, optionsCompat.toBundle());
-
+//            startActivity(intent);
         });
     }
 
