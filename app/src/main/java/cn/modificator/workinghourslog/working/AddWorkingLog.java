@@ -48,7 +48,7 @@ public class AddWorkingLog extends AppCompatActivity {
         descInputLayout = (TextInputLayout) findViewById(R.id.descInputLayout);
         etDesc = (EditText) findViewById(R.id.etWorkingDesc);
 
-        dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         findViewById(R.id.btnAdd).setOnClickListener(v -> {
             String desc = etDesc.getText().toString();
@@ -61,12 +61,14 @@ public class AddWorkingLog extends AppCompatActivity {
             }
             descInputLayout.setErrorEnabled(false);
 
-            /*WorkingHourLog log = new WorkingHourLog();
-            log.setPjtName(projectName);
-            log.setWorkingGroup(groupName);
+            WorkingHourLog log = new WorkingHourLog();
+//            log.setPjtName(projectName);
+//            log.setWorkingGroup(groupName);
+            log.setPjtName("测试项目名称");
+            log.setWorkingGroup("测试工作组");
             log.setWorkDesc(desc);
             log.setStartTime(dataFormat.format(new Date()));
-            WorkingLogDao.insert(log);*/
+            WorkingLogDao.insert(log);
             finish();
         });
 
@@ -88,7 +90,7 @@ public class AddWorkingLog extends AppCompatActivity {
         revealTransition.addTarget(R.id.working_add_working_log);
         revealTransition.setInterpolator(new FastOutSlowInInterpolator());
 //        revealTransition.setDuration(200);
-        revealTransition.setDuration(300);
+        revealTransition.setDuration(350);
 
         ChangeColor changeColor = new ChangeColor(0xff009688, getResources().getColor(R.color.white));
         changeColor.addTarget(R.id.working_add_working_log);
@@ -98,8 +100,7 @@ public class AddWorkingLog extends AppCompatActivity {
         transitionSet.addTransition(changeColor);
 
 //        transitionSet.setDuration(450);
-        transitionSet.setDuration(900);
-//https://github.com/crianzy/CustomAndroidActivityTransition/blob/master/app/src/main/java/com/imczy/customactivitytransition/CommentActivity.java
+        transitionSet.setDuration(350);
         return transitionSet;
     }
 

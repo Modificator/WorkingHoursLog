@@ -2,7 +2,7 @@ package cn.modificator.workinghourslog;
 
 import android.app.Application;
 
-import cn.modificator.workinghourslog.data.bean.DBOpenHelper;
+import cn.modificator.workinghourslog.data.DBOpenHelper;
 
 /**
  * Created by Modificator

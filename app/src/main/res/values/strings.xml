@@ -6,6 +6,6 @@
 
     <string name="menu_nowWork">当前工作</string>
     <string name="menu_history">历史记录</string>
-    <string name="menu_worklist">工作列表</string>
+    <string name="menu_worklist">工作记录</string>
     <string name="export">导出工时统计表</string>
 </resources>

@@ -7,10 +7,10 @@
             android:title="@string/menu_nowWork" />
         <item
             android:id="@+id/menu_worklist"
-            android:title="@string/menu_worklist" />ß
-        <item
-            android:id="@+id/menu_history"
-            android:title="@string/menu_history" />
+            android:title="@string/menu_worklist" />
+        <!--<item-->
+            <!--android:id="@+id/menu_history"-->
+            <!--android:title="@string/menu_history" />-->
     </group>
 
     <item android:title="操作">

@@ -25,6 +25,7 @@ public class WorkingLogDao {
     final static String COLUMN_START_TIME = "start_time";
     final static String COLUMN_END_TIME = "end_time";
     final static String COLUMN_WORK_COUNT = "work_count";
+    final static String COLUMN_WORK_DESC = "work_desc";
     final static String COLUMN_CREATE_TIME = "ctime";
 
     public static void insert(WorkingHourLog log) {
@@ -34,7 +35,8 @@ public class WorkingLogDao {
         contentValues.put(COLUMN_GROUP_NAME, log.getWorkingGroup());
         contentValues.put(COLUMN_START_TIME, log.getStartTime());
         contentValues.put(COLUMN_END_TIME, log.getEndTime());
-        contentValues.put(COLUMN_WORK_COUNT, log.getEndTime());
+        contentValues.put(COLUMN_WORK_COUNT, log.getWorkCount());
+        contentValues.put(COLUMN_WORK_DESC, log.getWorkDesc());
         database.insert(TABLE_NAME, "", contentValues);
         database.close();
     }
@@ -46,7 +48,8 @@ public class WorkingLogDao {
         contentValues.put(COLUMN_GROUP_NAME, log.getWorkingGroup());
         contentValues.put(COLUMN_START_TIME, log.getStartTime());
         contentValues.put(COLUMN_END_TIME, log.getEndTime());
-        contentValues.put(COLUMN_WORK_COUNT, log.getEndTime());
+        contentValues.put(COLUMN_WORK_COUNT, log.getWorkCount());
+        contentValues.put(COLUMN_WORK_DESC, log.getWorkDesc());
         database.update(TABLE_NAME, contentValues, "_id=?", new String[]{log.getId() + ""});
     }
 
@@ -63,6 +66,7 @@ public class WorkingLogDao {
                 log.setStartTime(cursor.getString(cursor.getColumnIndex(COLUMN_START_TIME)));
                 log.setEndTime(cursor.getString(cursor.getColumnIndex(COLUMN_END_TIME)));
                 log.setWorkCount(cursor.getString(cursor.getColumnIndex(COLUMN_WORK_COUNT)));
+                log.setWorkDesc(cursor.getString(cursor.getColumnIndex(COLUMN_WORK_DESC)));
                 logList.add(log);
             }
         }
@@ -73,4 +77,25 @@ public class WorkingLogDao {
         return logList;
     }
 
+    public static WorkingHourLog loadUnfinishWork() {
+        SQLiteDatabase database = App.getDbOpenHelper().getReadableDatabase();
+        Cursor cursor = database.rawQuery("select * from " + TABLE_NAME + " where " + COLUMN_END_TIME + " is null", new String[]{});
+        if (cursor == null || cursor.getCount() == 0) {
+            cursor.close();
+            database.close();
+            return null;
+        }
+        cursor.moveToNext();
+        WorkingHourLog result = new WorkingHourLog();
+        result.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+        result.setPjtName(cursor.getString(cursor.getColumnIndex(COLUMN_PROJECT_NAME)));
+        result.setWorkingGroup(cursor.getString(cursor.getColumnIndex(COLUMN_GROUP_NAME)));
+        result.setStartTime(cursor.getString(cursor.getColumnIndex(COLUMN_START_TIME)));
+        result.setEndTime(cursor.getString(cursor.getColumnIndex(COLUMN_END_TIME)));
+        result.setWorkCount(cursor.getString(cursor.getColumnIndex(COLUMN_WORK_COUNT)));
+        result.setWorkDesc(cursor.getString(cursor.getColumnIndex(COLUMN_WORK_DESC)));
+        cursor.close();
+        database.close();
+        return result;
+    }
 }

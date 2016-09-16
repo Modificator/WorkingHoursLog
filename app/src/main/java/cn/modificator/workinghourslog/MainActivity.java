@@ -19,17 +19,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cn.modificator.workinghourslog.history.WorkingLogHistory;
 import cn.modificator.workinghourslog.working.AddWorkingLog;
 import cn.modificator.workinghourslog.working.WorkingNowPage;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;
-    FloatingActionButton btnAddLog;
     DrawerLayout drawer;
     Fragment[] fragments = null;
     FragmentManager mFragmentManager = null;
     AppCompatActivity mContext;
+    int lastPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +41,22 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             WorkingNowPage workingNowPage = WorkingNowPage.getInstance();
+            WorkingLogHistory workingLogHistory = WorkingLogHistory.getInstance();
+            fragments = new Fragment[]{workingNowPage, workingLogHistory};
             mFragmentManager.beginTransaction()
                     .add(R.id.contentPanel, workingNowPage, WorkingNowPage.class.getName())
+                    .add(R.id.contentPanel, workingLogHistory, WorkingLogHistory.class.getName())
                     .show(workingNowPage)
+                    .hide(workingLogHistory)
                     .commit();
 
         } else {
             WorkingNowPage workingNowPage = (WorkingNowPage) mFragmentManager.findFragmentByTag(WorkingNowPage.class.getName());
+            WorkingLogHistory workingLogHistory = (WorkingLogHistory) mFragmentManager.findFragmentByTag(WorkingLogHistory.class.getName());
+            fragments = new Fragment[]{workingNowPage, workingLogHistory};
             mFragmentManager.beginTransaction()
                     .show(workingNowPage)
+                    .hide(workingLogHistory)
                     .commit();
         }
 
@@ -58,17 +66,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initViews() {
-        btnAddLog = (FloatingActionButton) findViewById(R.id.fab);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ((NavigationView) findViewById(R.id.nav_view)).setNavigationItemSelectedListener(this);
-        btnAddLog.setOnClickListener(v -> {
-//            getWindow().setExitTransition(new Explode());
-            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat
-                    .makeSceneTransitionAnimation(mContext, btnAddLog, "addLog");
-            Intent intent = new Intent(mContext, AddWorkingLog.class);
-            ActivityCompat.startActivity(mContext, intent, optionsCompat.toBundle());
-//            startActivity(intent);
-        });
+
     }
 
     private void initToolbar() {
@@ -95,6 +95,17 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.menu_worklist) {
+            mFragmentManager.beginTransaction()
+                    .show(fragments[1])
+                    .hide(fragments[0])
+                    .commit();
+        } else if (id == R.id.menu_nowWork) {
+            mFragmentManager.beginTransaction()
+                    .show(fragments[0])
+                    .hide(fragments[1])
+                    .commit();
+        }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;

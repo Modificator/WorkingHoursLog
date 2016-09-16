@@ -1,4 +1,4 @@
-package cn.modificator.workinghourslog.data.bean;
+package cn.modificator.workinghourslog.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +27,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "start_time TEXT," +
                 "end_time TEXT," +
                 "work_count TEXT," +
+                "work_desc TEXT," +
                 "ctime TIMESTAMP default CURRENT_TIMESTAMP" +
                 ")";
         db.execSQL(sql);
